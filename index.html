@@ -445,6 +445,12 @@
                 min-height: 120px;
             }
         }
+		a {
+		    color: #3498db;
+		}
+		a:hover {
+		    color: #2980b9;
+		}
     </style>
 </head>
 <body>
@@ -514,6 +520,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- 新增：联系我板块 -->
+        <div class="content-area" style="min-height: 80px; padding: 20px; position: relative;">
+            <div style="position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 8px; overflow: hidden; border: 2px solid #3498db;">
+                <img src="img/logo.png" alt="联系Logo" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+                    
+            <div class="text-content">
+                <p id="contactText1">如果你想关注我，可以在这里找到我：</p>
+                <p id="contactText2">
+                    <strong>油管:</strong> <a href="https://www.youtube.com/@PhillixJanice_YT" target="_blank">https://www.youtube.com/@PhillixJanice_YT</a><br>
+                    <strong>B站(bilibili):</strong> <a href="https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0" target="_blank">https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0</a><br>
+					<strong>微信视频号:</strong> @蓝色de许愿星吖
+                </p>
+            </div>
+        </div>
     </div>
     
     <div class="modal" id="codeModal">
@@ -567,6 +589,8 @@
                 'projectTitle': '项目说明',
                 'projectText1': '<strong>•</strong> 代码用于Bloxd的命令方块和服务器代码里。<br><strong>•</strong> 如果你需要可以直接复制，大部分代码都是我写的（不过用了AI-Deepseek）。 :3<br><strong>•</strong> 我做这个网站的主要用途: 有些地方放不了太长的代码，所以就建了一个专门复制代码的工具。',
                 'projectText2': '制作这个网站用了Deepseek :P',
+                'contactText1': '如果你想关注我，可以在这里找到我：',
+                'contactText2': '<strong>油管:</strong> <a href="https://www.youtube.com/@PhillixJanice_YT" target="_blank">https://www.youtube.com/@PhillixJanice_YT</a><br><strong>B站(bilibili):</strong> <a href="https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0" target="_blank">https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0</a><br><strong>微信视频号:</strong> @蓝色de许愿星吖',
                 'langBtn': 'EN'
             },
             'en': {
@@ -575,7 +599,7 @@
                 'fileSelectLabel': 'Worlds Codes:',
                 'fileSelectLabel2': 'Command Blocks:',
                 'selectDefault': '-- Choose a code file --',
-                'selectDefault2': '-- No codes now--',
+                'selectDefault2': '-- No codes now --',
                 'file1': 'Auto Parkour 1',
                 'file2': 'Auto Parkour 2',
                 'file3': 'Other Code 1',
@@ -590,17 +614,19 @@
                 'projectTitle': 'Project Description',
                 'projectText1': '<strong>•</strong> Codes are for Bloxd code block and worldcode.<br><strong>•</strong> Feel free to copy if needed, most codes are written by me (with AI-Deepseek help). :3<br><strong>•</strong> Main purpose of this website: Some platforms don\'t support long codes, so I created this dedicated code copying tool.',
                 'projectText2': 'This website was made with Deepseek :P',
+                'contactText1': 'If you want to follow me, you can find me here:',
+                'contactText2': '<strong>YouTube:</strong> <a href="https://www.youtube.com/@PhillixJanice_YT" target="_blank">https://www.youtube.com/@PhillixJanice_YT</a><br><strong>bilibili:</strong> <a href="https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0" target="_blank">https://space.bilibili.com/3493078547564755?spm_id_from=333.1007.0.0</a><br><strong>WeChat Channels:</strong> @蓝色de许愿星吖',
                 'langBtn': '中文' 
             }
         };
-    
+
         let currentLanguage = 'zh';
-    
+
         // 等待页面完全加载后再执行
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
         });
-    
+
         function initializeApp() {
             // 获取所有DOM元素
             const elements = {
@@ -619,6 +645,8 @@
                 projectTitle: document.getElementById('projectTitle'),
                 projectText1: document.getElementById('projectText1'),
                 projectText2: document.getElementById('projectText2'),
+                contactText1: document.getElementById('contactText1'),
+                contactText2: document.getElementById('contactText2'),
                 // 添加所有需要翻译的元素
                 title: document.getElementById('title'),
                 description: document.getElementById('description'),
@@ -637,18 +665,18 @@
                 copySuccessText: document.getElementById('copySuccessText'),
                 errorText: document.getElementById('errorText')
             };
-    
+
             let currentFileContent = "";
-    
+
             // 初始化文本
             updateTexts();
-    
+
             // 切换语言函数
             function switchLanguage() {
                 currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
                 updateTexts();
             }
-    
+
             // 更新所有文本 - 简化版本
             function updateTexts() {
                 const texts = translations[currentLanguage];
@@ -674,11 +702,13 @@
                 if (elements.projectTitle) elements.projectTitle.textContent = texts.projectTitle;
                 if (elements.projectText1) elements.projectText1.innerHTML = texts.projectText1;
                 if (elements.projectText2) elements.projectText2.textContent = texts.projectText2;
+                if (elements.contactText1) elements.contactText1.textContent = texts.contactText1;
+                if (elements.contactText2) elements.contactText2.innerHTML = texts.contactText2;
                 if (elements.langToggle) elements.langToggle.textContent = texts.langBtn;
                 
                 console.log('语言已切换到:', currentLanguage); // 调试用
             }
-    
+
             // 语言切换按钮事件
             if (elements.langToggle) {
                 elements.langToggle.addEventListener('click', switchLanguage);
@@ -695,7 +725,7 @@
                     }
                 });
             }
-    
+
             // 文件选择变化 - 第二个下拉框
             if (elements.fileSelect2) {
                 elements.fileSelect2.addEventListener('change', function() {
@@ -746,7 +776,7 @@
                     }
                 });
             }
-    
+
             // 显示模态框并加载文件 - 第二个按钮
             if (elements.showCodeBtn2) {
                 elements.showCodeBtn2.addEventListener('click', async () => {
