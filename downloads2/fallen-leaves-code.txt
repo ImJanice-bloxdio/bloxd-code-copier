@@ -1,0 +1,54 @@
+let [x, y, z] = thisPos;
+y += 0.1
+
+const yellowColor = {
+    timeFraction: 0,
+    minColor: [255, 220, 70, 1],
+    maxColor: [240, 190, 50, 1]
+};
+
+const darkColor = {
+    timeFraction: 0,
+    minColor: [200, 150, 50, 1],
+    maxColor: [180, 100, 30, 1]
+};
+
+const darkCount = 8000;
+const yellowCount = 1000;
+
+const commonParams = {
+    texture: "generic_2",
+    minLifeTime: 10,
+    maxLifeTime: 20,
+    minEmitPower: 0.2,
+    maxEmitPower: 0.7,
+    minSize: 0.18,
+    maxSize: 0.28,
+    gravity: [0, -0.15, 0],
+    velocityGradients: [{
+        timeFraction: 0,
+        factor: 1,
+        factor2: 1
+    }],
+    blendMode: 1
+};
+
+api.playParticleEffect({
+    ...commonParams,
+    dir1: [0.8, 0.6, 0.8],
+    dir2: [-0.8, -0.3, -0.8],
+    pos1: [x - 55, y, z - 55],
+    pos2: [x + 55, y + 6, z + 55],
+    manualEmitCount: darkCount,
+    colorGradients: [darkColor]
+});
+
+api.playParticleEffect({
+    ...commonParams,
+    dir1: [0.7, 0.7, 0.9],
+    dir2: [-0.9, -0.2, -0.7],
+    pos1: [x - 55, y + 2, z - 55],
+    pos2: [x + 55, y + 6, z + 55],
+    manualEmitCount: yellowCount,
+    colorGradients: [yellowColor]
+});
