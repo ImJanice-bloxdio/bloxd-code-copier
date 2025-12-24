@@ -1,0 +1,75 @@
+let [x, y, z] = thisPos;
+y += 0.1
+
+const windDirection = [-0.8, 0, 0.5]; 
+
+const pinkColor = {
+    timeFraction: 0,
+    minColor: [255, 200, 220, 1],
+    maxColor: [240, 170, 200, 1]  
+};
+
+const lightPinkColor = {
+    timeFraction: 0,
+    minColor: [255, 230, 240, 1], 
+    maxColor: [250, 210, 230, 1] 
+};
+
+const mainPinkCount = 1000; 
+const lightPinkCount = 500; 
+
+api.playParticleEffect({
+    dir1: [0.8 + windDirection[0], 0.6, 0.8 + windDirection[2]], 
+    dir2: [-0.8 + windDirection[0], -0.2, -0.8 + windDirection[2]],
+    pos1: [x - 16, y, z - 16],
+    pos2: [x + 16, y + 5, z + 16],
+    texture: "generic_2",
+    minLifeTime: 35,
+    maxLifeTime: 55,
+    minEmitPower: 0.15,
+    maxEmitPower: 0.6,
+    minSize: 0.12,
+    maxSize: 0.22,
+    manualEmitCount: mainPinkCount,
+    gravity: [0, -0.18, 0],
+    
+    colorGradients: [pinkColor],
+    
+    velocityGradients: [
+        {
+            timeFraction: 0,
+            factor: 1,
+            factor2: 1
+        }
+    ],
+    
+    blendMode: 1
+});
+
+api.playParticleEffect({
+    dir1: [0.7 + windDirection[0], 0.7, 0.9 + windDirection[2]],
+    dir2: [-0.9 + windDirection[0], -0.1, -0.7 + windDirection[2]],
+    pos1: [x - 150, y + 2, z - 150],
+    pos2: [x + 150, y + 28, z + 150],
+    texture: "generic_2",
+    minLifeTime: 40,
+    maxLifeTime: 65,
+    minEmitPower: 0.1,
+    maxEmitPower: 0.5,
+    minSize: 0.1,
+    maxSize: 0.18,
+    manualEmitCount: lightPinkCount,
+    gravity: [0, -0.15, 0],
+    
+    colorGradients: [lightPinkColor],
+    
+    velocityGradients: [
+        {
+            timeFraction: 0,
+            factor: 1,
+            factor2: 1
+        }
+    ],
+    
+    blendMode: 1
+});
