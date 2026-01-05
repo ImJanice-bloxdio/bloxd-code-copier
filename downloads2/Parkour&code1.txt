@@ -5,7 +5,7 @@ let glassBlocksToRemove = [];
  
 // 61
 let leftBlocks = [
-    { name: "Grass Block", position: [300, 3, 299] },
+    { name: "Lime Wool", position: [300, 1, 299] },
     { name: "Glass", position: [301, 1, 299] },
     { name: "Glass", position: [301, 1, 300] },
     { name: "Glass", position: [302, 1, 300] },
