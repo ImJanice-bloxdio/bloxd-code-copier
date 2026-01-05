@@ -2,7 +2,7 @@ var lastBroadcastTime = 0;
 let isStarted = false;
 let currentIndex = 0;
 let glassBlocksToRemove = [];
-
+ 
 // 38
 let blocks1 = [
     { name: "Block of Quartz", position: [342, 43, 565] },
@@ -35,13 +35,13 @@ let blocks1 = [
 	{ name: "Pine Wood Planks", position: [326, 45, 557] },
     { name: "Pine Wood Planks", position: [326, 46, 557] },
     { name: "MOB_SPAWN", position: [326, 46, 557] }, 
-    { name: "Obsidian", position: [322, 45, 557] },
-    { name: "Obsidian", position: [322, 46, 557] },
-    { name: "Obsidian", position: [322, 47, 557] },
-    { name: "Obsidian", position: [322, 48, 557] },
-    { name: "Obsidian", position: [322, 49, 557] },
-    { name: "Obsidian", position: [322, 49, 558] },
-    { name: "Obsidian", position: [322, 49, 559] },
+    { name: "Obsidian", position: [321, 46, 557] },
+    { name: "Obsidian", position: [321, 47, 557] },
+    { name: "Obsidian", position: [321, 48, 557] },
+    { name: "Obsidian", position: [321, 49, 557] },
+    { name: "Obsidian", position: [321, 50, 557] },
+    { name: "Obsidian", position: [321, 50, 558] },
+    { name: "Obsidian", position: [321, 50, 559] },
     { name: "0", position: [342, 43, 566] },
 ];
 
@@ -77,46 +77,43 @@ let blocks2 = [
     { name: "0", position: [342, 43, 566] },
     { name: "0", position: [342, 43, 566] },
     { name: "0", position: [342, 43, 566] },
-    { name: "Obsidian", position: [322, 49, 560] },
-    { name: "Obsidian", position: [322, 48, 560] },
-    { name: "Obsidian", position: [322, 47, 560] },
-    { name: "Obsidian", position: [322, 46, 560] },
-    { name: "Obsidian", position: [322, 45, 560] },
-    { name: "Obsidian", position: [322, 45, 559] },
-    { name: "Obsidian", position: [322, 45, 558] },
+    { name: "Obsidian", position: [321, 50, 560] },
+    { name: "Obsidian", position: [321, 49, 560] },
+    { name: "Obsidian", position: [321, 48, 560] },
+    { name: "Obsidian", position: [321, 47, 560] },
+    { name: "Obsidian", position: [321, 46, 560] },
+    { name: "Obsidian", position: [321, 46, 559] },
+    { name: "Obsidian", position: [321, 46, 558] },
     { name: "0", position: [342, 43, 566] },
 ];
 
 onPlayerChat = (playerId,chatMessage,channelName) => {
-    namee = api.getEntityName(playerId)
-    if (namee === "PhillixJanice_YT" && chatMessage === "#1") {
+    if (chatMessage === "#1") {
         clearAllBlocks();
         resetSequence();
         cleanMob()
-        api.setBlockRect([322,46,558],[322,48,559],"Air");
+        api.setBlockRect([321,47,558],[321,49,559],"Air");
+			api.setBlockRect([322,45,560],[321,45,557],"Air");
         api.setBlock([339, 44, 564],"Air");
         api.setBlock([323, 45, 558],"Air");
     }
-    if (namee === "PhillixJanice_YT" && chatMessage === "#2") {
+    if (chatMessage === "#2") {
         resetSequence();
         cleanMob()
         api.setBlock([339, 44, 564],"Air");
         api.setBlock([323, 45, 558],"Air");
     }
-	if (chatMessage === "#clear") {
-		api.clearInventory(playerId)
-	}
 }
 
 function onBlockStand(playerId, x, y, z, stoodOnBlockName) {
     if (stoodOnBlockName === "Block of Moonstone" && x === 346 && z === 565 && y === 42 && !isStarted) {
-        api.setItemSlot(playerId, 1, "Cherry Wood Planks", 1);
+        api.setItemSlot(playerId, 0, "Cherry Wood Planks", 1);
         isStarted = true;
         currentIndex = 0;
         lastBroadcastTime = Date.now();
     }
     if (stoodOnBlockName === "Cherry Wood Planks" && y === 46) {
-        api.setItemSlot(playerId, 1, "Obsidian", 1);
+        api.setItemSlot(playerId, 0, "Obsidian", 1);
     } 
 }
 
@@ -182,7 +179,9 @@ function tick() {
         currentIndex++;
         
         if (currentIndex >= maxLength) {
-            api.setBlockRect([322,46,558],[322,48,559],"2041");
+			api.setBlockRect([322,45,560],[321,45,557],"Barkless Maple Log");
+            api.setBlockRect([321,47,558],[321,49,559],"2041");
+			
         }
         
         lastBroadcastTime = currentTime;

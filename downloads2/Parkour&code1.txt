@@ -5,7 +5,7 @@ let glassBlocksToRemove = [];
  
 // 61
 let leftBlocks = [
-    { name: "Lime Wool", position: [300, 1, 299] },
+    { name: "Grass Block", position: [300, 3, 299] },
     { name: "Glass", position: [301, 1, 299] },
     { name: "Glass", position: [301, 1, 300] },
     { name: "Glass", position: [302, 1, 300] },
@@ -145,8 +145,7 @@ function onBlockStand(playerId, x, y, z, stoodOnBlockName) {
 }
 
 onPlayerChat = (playerId,chatMessage,channelName) => {
-    namee = api.getEntityName(playerId)
-    if (namee === "PhillixJanice_YT" && chatMessage === "#1") {
+    if (chatMessage === "#1") {
         clearAllBlocks();
         resetSequence();
 		api.setBlockRect([298,8,299],[296,8,297],"Air");
